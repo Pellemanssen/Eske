@@ -1,0 +1,193 @@
+runtimeScene.setBackgroundColor(100, 100, 240);
+
+// Hol die Wolkenobjekte
+const clouds1_1 = runtimeScene.getObjects("Clouds_1_1")[0];
+const clouds1_2 = runtimeScene.getObjects("Clouds_1_2")[0];
+const clouds1_3 = runtimeScene.getObjects("Clouds_1_3")[0];
+const cloud3_1 = runtimeScene.getObjects("Cloud_3_1")[0];
+const cloud3_2 = runtimeScene.getObjects("Cloud_3_2")[0];
+const cloud3_3 = runtimeScene.getObjects("Cloud_3_3")[0];
+const clouds2_1 = runtimeScene.getObjects("Clouds_2_1")[0];
+const clouds2_2 = runtimeScene.getObjects("Clouds_2_2")[0];
+const clouds2_3 = runtimeScene.getObjects("Clouds_2_3")[0];
+const clouds2_4 = runtimeScene.getObjects("Clouds_2_4")[0];
+
+// Hol die Steinobjekte
+const rocks = runtimeScene.getObjects("Rocks")[0];
+const rocks2 = runtimeScene.getObjects("Rocks2")[0];
+const rocks3 = runtimeScene.getObjects("Rocks3")[0];
+const rocks4 = runtimeScene.getObjects("Rocks4")[0];
+
+// Hol die Grasobjekte
+const gras = runtimeScene.getObjects("Gras")[0];
+const gras2 = runtimeScene.getObjects("Gras2")[0];
+const gras3 = runtimeScene.getObjects("Gras3")[0];
+const gras4 = runtimeScene.getObjects("Gras4")[0];
+const gras5 = runtimeScene.getObjects("Gras5")[0];
+
+// Hol die Inselobjekte
+const farislands = runtimeScene.getObjects("Farislands")[0];
+const closeislands = runtimeScene.getObjects("Closeislands")[0];
+
+// Debugging: Überprüfen, ob die Objekte existieren
+if (!clouds1_1 || !clouds1_2 || !clouds1_3 || !cloud3_1 || !cloud3_2 || !cloud3_3 || !clouds2_1 || !clouds2_2 || !clouds2_3 || !clouds2_4 ||
+    !rocks || !rocks2 || !rocks3 || !rocks4 ||
+    !gras || !gras2 || !gras3 || !gras4 || !gras5 ||
+    !farislands || !closeislands) {
+    console.error("Eines oder mehrere der Wolken-, Stein-, Gras- oder Inselobjekte konnten nicht gefunden werden.");
+} else {
+    console.log("Alle Objekte erfolgreich gefunden.");
+}
+
+// Startgeschwindigkeiten und Beschleunigungsraten
+const startSpeeds = {
+    clouds1: -2.5,
+    cloud3: -2,
+    clouds2: -2.2,
+    rocks: -5,
+    gras: -5,
+    farislands: -3,
+    closeislands: -4
+};
+
+const accelerationRates = {
+    clouds1: 0.2,
+    cloud3: 0.2,
+    clouds2: 0.2,
+    rocks: 0.2,
+    gras: 0.2,
+    farislands: 0.2,
+    closeislands: 0.2
+};
+
+let speeds = {
+    clouds1: startSpeeds.clouds1,
+    cloud3: startSpeeds.cloud3,
+    clouds2: startSpeeds.clouds2,
+    rocks: startSpeeds.rocks,
+    gras: startSpeeds.gras,
+    farislands: startSpeeds.farislands,
+    closeislands: startSpeeds.closeislands
+};
+
+// Funktion, um die Geschwindigkeit zu erhöhen
+function increaseSpeed() {
+    speeds.clouds1 += accelerationRates.clouds1;
+    speeds.cloud3 += accelerationRates.cloud3;
+    speeds.clouds2 += accelerationRates.clouds2;
+    speeds.rocks += accelerationRates.rocks;
+    speeds.gras += accelerationRates.gras;
+    speeds.farislands += accelerationRates.farislands;
+    speeds.closeislands += accelerationRates.closeislands;
+}
+
+// Intervall für Geschwindigkeitsanpassung
+setInterval(increaseSpeed, 1000);
+
+// Aktualisiere die Positionen der Objekte
+function updatePositions() {
+    clouds1_1.setX(clouds1_1.getX() + speeds.clouds1);
+    clouds1_2.setX(clouds1_2.getX() + speeds.clouds1);
+    clouds1_3.setX(clouds1_3.getX() + speeds.clouds1);
+    cloud3_1.setX(cloud3_1.getX() + speeds.cloud3);
+    cloud3_2.setX(cloud3_2.getX() + speeds.cloud3);
+    cloud3_3.setX(cloud3_3.getX() + speeds.cloud3);
+    clouds2_1.setX(clouds2_1.getX() + speeds.clouds2);
+    clouds2_2.setX(clouds2_2.getX() + speeds.clouds2);
+    clouds2_3.setX(clouds2_3.getX() + speeds.clouds2);
+    clouds2_4.setX(clouds2_4.getX() + speeds.clouds2);
+
+    rocks.setX(rocks.getX() + speeds.rocks);
+    rocks2.setX(rocks2.getX() + speeds.rocks);
+    rocks3.setX(rocks3.getX() + speeds.rocks);
+    rocks4.setX(rocks4.getX() + speeds.rocks);
+
+    gras.setX(gras.getX() + speeds.gras);
+    gras2.setX(gras2.getX() + speeds.gras);
+    gras3.setX(gras3.getX() + speeds.gras);
+    gras4.setX(gras4.getX() + speeds.gras);
+    gras5.setX(gras5.getX() + speeds.gras);
+
+    farislands.setX(farislands.getX() + speeds.farislands);
+    closeislands.setX(closeislands.getX() + speeds.closeislands);
+}
+
+// Breiten der Wolken-, Stein-, Gras- und Insel-Tiles
+const clouds1_1Width = 1574;
+const clouds1_2Width = 1575;
+const clouds1_3Width = 1574;
+const cloud3_1Width = 1936;
+const cloud3_2Width = 1935;
+const cloud3_3Width = 1936;
+const clouds2_1Width = 1609;
+const clouds2_2Width = 1610;
+const clouds2_3Width = 1609;
+const clouds2_4Width = 1609;
+
+const rocksWidth = 1633;
+const rocks2Width = 1633;
+const rocks3Width = 1633;
+const rocks4Width = 1633;
+
+const grasWidth = 1864;
+const gras2Width = 1864;
+const gras3Width = 1864;
+const gras4Width = 1864;
+const gras5Width = 1864;
+
+const farislandsWidth = 2000;
+const closeislandsWidth = 2000;
+
+// Gesamtlänge der Reihen
+const totalWidth1 = clouds1_1Width + clouds1_2Width + clouds1_3Width;
+const totalWidth2 = cloud3_1Width + cloud3_2Width + cloud3_3Width;
+const totalWidth3 = clouds2_1Width + clouds2_2Width + clouds2_3Width + clouds2_4Width;
+const totalWidthRocks = rocksWidth + rocks2Width + rocks3Width + rocks4Width;
+const totalWidthGras = grasWidth + gras2Width + gras3Width + gras4Width + gras5Width;
+const totalWidthFarislands = farislandsWidth;
+const totalWidthCloseislands = closeislandsWidth;
+
+// Funktion, um eine Wolke wieder an den Anfang zu setzen, wenn sie 1000 Pixel aus dem Bildschirm verschwunden ist
+function resetObjectPosition(object, nextObject, objectWidth, offset) {
+    if (object.getX() + objectWidth < -offset) {
+        object.setX(nextObject.getX() + nextObject.getWidth());
+    }
+}
+
+// Überprüfe, ob eine Wolke, ein Stein, Gras oder eine Insel aus dem Bildschirm verschwunden ist, und setze sie zurück (mit 1000 Pixel Offset)
+const offset = 1000;
+function resetPositions() {
+    resetObjectPosition(clouds1_1, clouds1_3, clouds1_1Width, offset);
+    resetObjectPosition(clouds1_2, clouds1_1, clouds1_2Width, offset);
+    resetObjectPosition(clouds1_3, clouds1_2, clouds1_3Width, offset);
+    resetObjectPosition(cloud3_1, cloud3_3, cloud3_1Width, offset);
+    resetObjectPosition(cloud3_2, cloud3_1, cloud3_2Width, offset);
+    resetObjectPosition(cloud3_3, cloud3_2, cloud3_3Width, offset);
+    resetObjectPosition(clouds2_1, clouds2_4, clouds2_1Width, offset);
+    resetObjectPosition(clouds2_2, clouds2_1, clouds2_2Width, offset);
+    resetObjectPosition(clouds2_3, clouds2_2, clouds2_3Width, offset);
+    resetObjectPosition(clouds2_4, clouds2_3, clouds2_4Width, offset);
+
+    resetObjectPosition(rocks, rocks4, rocksWidth, offset);
+    resetObjectPosition(rocks2, rocks, rocks2Width, offset);
+    resetObjectPosition(rocks3, rocks2, rocks3Width, offset);
+    resetObjectPosition(rocks4, rocks3, rocks4Width, offset);
+
+    resetObjectPosition(gras, gras5, grasWidth, offset);
+    resetObjectPosition(gras2, gras, gras2Width, offset);
+    resetObjectPosition(gras3, gras2, gras3Width, offset);
+    resetObjectPosition(gras4, gras3, gras4Width, offset);
+    resetObjectPosition(gras5, gras4, gras5Width, offset);
+
+    resetObjectPosition(farislands, farislands, farislandsWidth, offset);
+    resetObjectPosition(closeislands, closeislands, closeislandsWidth, offset);
+}
+
+// Hauptfunktion, um Positionen und Geschwindigkeiten zu aktualisieren
+function mainLoop() {
+    updatePositions();
+    resetPositions();
+    requestAnimationFrame(mainLoop);
+}
+
+mainLoop();
