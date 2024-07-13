@@ -1,0 +1,85 @@
+runtimeScene.setBackgroundColor(100,100,240);
+// Hol die Wolkenobjekte
+const clouds1_1 = runtimeScene.getObjects("Clouds_1_1")[0];
+const clouds1_2 = runtimeScene.getObjects("Clouds_1_2")[0];
+const clouds1_3 = runtimeScene.getObjects("Clouds_1_3")[0];
+const cloud3_1 = runtimeScene.getObjects("Cloud_3_1")[0];
+const cloud3_2 = runtimeScene.getObjects("Cloud_3_2")[0];
+const cloud3_3 = runtimeScene.getObjects("Cloud_3_3")[0];
+const clouds2_1 = runtimeScene.getObjects("Clouds_2_1")[0];
+const clouds2_2 = runtimeScene.getObjects("Clouds_2_2")[0];
+const clouds2_3 = runtimeScene.getObjects("Clouds_2_3")[0];
+const clouds2_4 = runtimeScene.getObjects("Clouds_2_4")[0];
+
+// Debugging: Überprüfen, ob die Objekte existieren
+if (!clouds1_1 || !clouds1_2 || !clouds1_3 || !cloud3_1 || !cloud3_2 || !cloud3_3 || !clouds2_1 || !clouds2_2 || !clouds2_3 || !clouds2_4) {
+    console.error("Eines oder mehrere der Wolkenobjekte konnten nicht gefunden werden.");
+} else {
+    console.log("Alle Wolkenobjekte erfolgreich gefunden.");
+}
+
+// Geschwindigkeit der Wolkenbewegung
+const speed1 = -1.5;
+const speed2 = -0.7;
+const speed3 = -1.1;
+
+// Aktualisiere die Positionen der Wolken mit ihren jeweiligen Geschwindigkeiten
+clouds1_1.setX(clouds1_1.getX() + speed1);
+clouds1_2.setX(clouds1_2.getX() + speed1);
+clouds1_3.setX(clouds1_3.getX() + speed1);
+cloud3_1.setX(cloud3_1.getX() + speed2);
+cloud3_2.setX(cloud3_2.getX() + speed2);
+cloud3_3.setX(cloud3_3.getX() + speed2);
+clouds2_1.setX(clouds2_1.getX() + speed3);
+clouds2_2.setX(clouds2_2.getX() + speed3);
+clouds2_3.setX(clouds2_3.getX() + speed3);
+clouds2_4.setX(clouds2_4.getX() + speed3);
+
+// Debugging: Ausgabe der neuen Positionen
+console.log(`clouds1_1 new: ${clouds1_1.getX()}`);
+console.log(`clouds1_2 new: ${clouds1_2.getX()}`);
+console.log(`clouds1_3 new: ${clouds1_3.getX()}`);
+console.log(`cloud3_1 new: ${cloud3_1.getX()}`);
+console.log(`cloud3_2 new: ${cloud3_2.getX()}`);
+console.log(`cloud3_3 new: ${cloud3_3.getX()}`);
+console.log(`clouds2_1 new: ${clouds2_1.getX()}`);
+console.log(`clouds2_2 new: ${clouds2_2.getX()}`);
+console.log(`clouds2_3 new: ${clouds2_3.getX()}`);
+console.log(`clouds2_4 new: ${clouds2_4.getX()}`);
+
+// Breiten der Wolken-Tiles
+const clouds1_1Width = 1574;
+const clouds1_2Width = 1575;
+const clouds1_3Width = 1574;
+const cloud3_1Width = 1936;
+const cloud3_2Width = 1935;
+const cloud3_3Width = 1936;
+const clouds2_1Width = 1609;
+const clouds2_2Width = 1610;
+const clouds2_3Width = 1609;
+const clouds2_4Width = 1609;
+
+// Gesamtlänge der Wolkenreihen
+const totalWidth1 = clouds1_1Width + clouds1_2Width + clouds1_3Width;
+const totalWidth2 = cloud3_1Width + cloud3_2Width + cloud3_3Width;
+const totalWidth3 = clouds2_1Width + clouds2_2Width + clouds2_3Width + clouds2_4Width;
+
+// Funktion, um eine Wolke wieder an den Anfang zu setzen, wenn sie 1000 Pixel aus dem Bildschirm verschwunden ist
+function resetCloudPosition(cloud, nextCloud, cloudWidth, offset) {
+    if (cloud.getX() + cloudWidth < -offset) {
+        cloud.setX(nextCloud.getX() + nextCloud.getWidth());
+    }
+}
+
+// Überprüfe, ob eine Wolke aus dem Bildschirm verschwunden ist, und setze sie zurück (mit 1000 Pixel Offset)
+const offset = 1400;
+resetCloudPosition(clouds1_1, clouds1_3, clouds1_1Width, offset);
+resetCloudPosition(clouds1_2, clouds1_1, clouds1_2Width, offset);
+resetCloudPosition(clouds1_3, clouds1_2, clouds1_3Width, offset);
+resetCloudPosition(cloud3_1, cloud3_3, cloud3_1Width, offset);
+resetCloudPosition(cloud3_2, cloud3_1, cloud3_2Width, offset);
+resetCloudPosition(cloud3_3, cloud3_2, cloud3_3Width, offset);
+resetCloudPosition(clouds2_1, clouds2_4, clouds2_1Width, offset);
+resetCloudPosition(clouds2_2, clouds2_1, clouds2_2Width, offset);
+resetCloudPosition(clouds2_3, clouds2_2, clouds2_3Width, offset);
+resetCloudPosition(clouds2_4, clouds2_3, clouds2_4Width, offset);
